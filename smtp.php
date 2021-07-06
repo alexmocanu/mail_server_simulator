@@ -180,6 +180,10 @@ class SmtpServer {
         return "250 Ok\r\n";
     }
     
+    protected function HELO() {
+        return "250 Ok\r\n";
+    }
+    
     protected function QUIT($params, $remoteAddr) {
         return "221 Bye\r\n";        
     }
