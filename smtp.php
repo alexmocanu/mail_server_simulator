@@ -167,15 +167,24 @@ class SmtpServer {
 
     protected function MAIL($params, $remoteAddr) {        
         if (strpos($params[0], "FROM:") === 0) {
-            $this->clients[(string) $remoteAddr]['from'] = trim(str_replace(["FROM:", "<", ">"], "", $params[0]));
+            if(count($params) > 1) {
+                $this->clients[(string) $remoteAddr]['from'] = trim(str_replace(["FROM:", "<", ">"], "", $params[1]));
+            } else {
+                $this->clients[(string) $remoteAddr]['from'] = trim(str_replace(["FROM:", "<", ">"], "", $params[0]));
+            }
         }
 
         return "250 Ok\r\n";
     }
 
-    protected function RCPT($params, $remoteAddr) {        
+    protected function RCPT($params, $remoteAddr) {    
         if (strpos($params[0], "TO:") === 0) {
-            $this->clients[(string) $remoteAddr]['to'][] = trim(str_replace(["TO:", "<", ">"], "", $params[0]));
+            if(count($params) > 1) {
+                $this->clients[(string) $remoteAddr]['to'][] = trim(str_replace(["TO:", "<", ">"], "", $params[1]));
+            } else {
+                $this->clients[(string) $remoteAddr]['to'][] = trim(str_replace(["TO:", "<", ">"], "", $params[0]));
+            }
+            
         }
         return "250 Ok\r\n";
     }
