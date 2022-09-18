@@ -71,8 +71,9 @@ class SmtpServer {
 
                     $this->clients[(string) $remoteAddr]['message'] .= $chunk;
 
-                    //The end of message sequence has arrived - send the current message, clear data, exit message mode and notify the client                    
-                    if (strlen($this->clients[(string) $remoteAddr]['message']) >= 5 && substr($chunk, -5) == "\r\n.\r\n") {
+                    //If the message ends with a line containing only a dot then the end of message sequence has arrived - send the current message, clear data, exit message mode and notify the client         
+                    $currentMessage = $this->clients[(string) $remoteAddr]['message'];
+                    if (strlen($currentMessage) >= 5 && substr($currentMessage, -5) == "\r\n.\r\n") {                        
                         
                         if (!empty($this->clients[(string) $remoteAddr]['to'])) {
                             foreach ($this->clients[(string) $remoteAddr]['to'] as $receiver) {
@@ -214,6 +215,14 @@ class SmtpServer {
     protected function DATA($params) {        
         return "354 End data with <CR><LF>.<CR><LF>\r\n";
     }
+    /**
+     * Should reset the SMTP connection. Does nothing here - just to make some email clients happy
+     * @todo Implement reset functionality
+     * @return string
+     */
+    protected function RSET() {
+        return "250 Ok\r\n";
+    }    
 
 }
 
