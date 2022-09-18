@@ -221,6 +221,19 @@ class Pop3Server {
     }
 
     /**
+     * Retrieve partial message (usually headers + a set number of lines).     
+     * 
+     * @todo Implement proper TOP behavior. For now just redirect to RETR.
+     * 
+     * @param string $params
+     * @param \Amp\Socket\SocketAddress $remoteAddr
+     * @return string
+     */    
+    protected function TOP($params, $remoteAddr) {
+        return $this->RETR($params, $remoteAddr);
+    }
+
+    /**
      * Retrieves a message by it's number
      * 
      * @param string $params
