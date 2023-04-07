@@ -2,7 +2,7 @@
 /**
  * boot script
  * 
- * LICENSE: The MIT License (MIT) - see LICENSE.md 
+ * LICENSE: The Unlicense - see LICENSE.md  
  */
 
 require __DIR__ . "/vendor/autoload.php";

@@ -5,7 +5,7 @@ namespace App;
 /**
  * Config class
  * 
- * LICENSE: The MIT License (MIT) - see LICENSE.md 
+ * LICENSE: The Unlicense - see LICENSE.md  
  */
 class Config {
     

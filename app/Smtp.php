@@ -1,6 +1,6 @@
 <?php
 /**
-  * LICENSE: The MIT License (MIT) - see LICENSE.md 
+  * LICENSE: The Unlicense - see LICENSE.md  
  */
 namespace App;
 
